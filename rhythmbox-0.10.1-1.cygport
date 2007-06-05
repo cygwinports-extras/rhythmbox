@@ -1,0 +1,8 @@
+inherit gnome2
+
+
+
+CYGCONF_ARGS="--disable-daap --enable-libnotify --enable-python
+	--without-cd-burning --without-hal --without-mdns --with-database=tree
+	--with-gnome-keyring --with-ipod --with-playback=gstreamer-0-10
+	--with-internal-libsexy"
