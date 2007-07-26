@@ -1,6 +1,7 @@
 inherit gnome2
 
-
+DESCRIPTION="GNOME music management application"
+HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
 
 CYGCONF_ARGS="--disable-daap --enable-libnotify --enable-python
 	--without-cd-burning --without-hal --without-mdns --with-database=tree

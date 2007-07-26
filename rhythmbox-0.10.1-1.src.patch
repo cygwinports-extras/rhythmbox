@@ -1,7 +1,7 @@
 diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/Makefile.am src/rhythmbox-0.10.1/Makefile.am
 --- origsrc/rhythmbox-0.10.1/Makefile.am	2007-02-24 17:28:10.000000000 -0600
-+++ src/rhythmbox-0.10.1/Makefile.am	2007-06-05 12:35:35.995025800 -0500
-@@ -2,6 +2,8 @@
++++ src/rhythmbox-0.10.1/Makefile.am	2007-07-26 15:53:29.826815400 -0500
+@@ -2,11 +2,13 @@
  
  AUTOMAKE_OPTIONS = 1.7
  
@@ -10,6 +10,12 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
  DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --enable-gtk-doc --disable-scrollkeeper
  distuninstallcheck_listfiles = find . -type f -print | grep -v '^\./var/scrollkeeper'
  
+ SUBDIRS = macros lib metadata rhythmdb widgets sources podcast \
+-	backends corelib plugins bindings shell remote data po help tests doc
++	backends bindings corelib plugins shell remote data po help tests doc
+ 
+ EXTRA_DIST = 			\
+ 	autogen.sh		\
 diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/backends/gstreamer/Makefile.am src/rhythmbox-0.10.1/backends/gstreamer/Makefile.am
 --- origsrc/rhythmbox-0.10.1/backends/gstreamer/Makefile.am	2007-02-24 17:28:09.000000000 -0600
 +++ src/rhythmbox-0.10.1/backends/gstreamer/Makefile.am	2007-06-05 14:06:24.272972500 -0500
@@ -38,39 +44,99 @@ diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -
  
  	if /bin/sh ../libtool --mode=compile ${CC} $PYTHON_CFLAGS -c testpython.c >/dev/null 2>&1 && \
 -		/bin/sh ../libtool --mode=link ${CC} -o testpython.la -rpath `pwd` -module -avoid-version $PYTHON_LIB_LOC testpython.lo $PYTHON_LIBS $PYTHON_EXTRA_LIBS >/dev/null 2>&1 && \
-+		/bin/sh ../libtool --mode=link ${CC} -o testpython.la -rpath `pwd` $PLUGIN_LIBTOOL_FLAGS $PYTHON_LIB_LOC testpython.lo $PYTHON_LIBS $PYTHON_EXTRA_LIBS >/dev/null 2>&1 && \
++		/bin/sh ../libtool --mode=link ${CC} -o testpython.la -rpath `pwd` -module -avoid-version -no-undefined $PYTHON_LIB_LOC testpython.lo $PYTHON_LIBS $PYTHON_EXTRA_LIBS >/dev/null 2>&1 && \
  		grep 'dlname.*testpython' testpython.la >/dev/null 2>&1; then
  		result=yes
  	else
 diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/corelib/Makefile.am src/rhythmbox-0.10.1/corelib/Makefile.am
 --- origsrc/rhythmbox-0.10.1/corelib/Makefile.am	2007-02-24 17:27:20.000000000 -0600
-+++ src/rhythmbox-0.10.1/corelib/Makefile.am	2007-06-05 16:41:11.173904400 -0500
-@@ -16,10 +16,12 @@
++++ src/rhythmbox-0.10.1/corelib/Makefile.am	2007-07-26 15:54:56.048876200 -0500
+@@ -16,10 +16,24 @@
  
  librhythmbox_core_la_LIBADD = 				\
  	$(top_builddir)/sources/libsources.la	        \
 +	$(top_builddir)/sources/libsourcesimpl.la	\
  	$(top_builddir)/metadata/librbmetadata.la	\
++	$(top_builddir)/podcast/librbpodcast.la		\
  	$(top_builddir)/widgets/librbwidgets.la         \
  	$(top_builddir)/backends/librbbackends.la	\
 +	$(top_builddir)/rhythmdb/librhythmdb.la		\
++	$(top_builddir)/plugins/librbplugins.la		\
++	$(top_builddir)/shell/librbshell.la			\
  	$(top_builddir)/lib/librb.la
  
 -librhythmbox_core_la_LDFLAGS = -export-dynamic
++if ENABLE_PYTHON
++librhythmbox_core_la_LIBADD += $(top_builddir)/bindings/python/rb.la
++endif
+ 
 +librhythmbox_core_la_LDFLAGS = -export-dynamic -no-undefined
++
++$(top_builddir)/plugins/librbplugins.la:
++	cd $(top_builddir)/plugins; $(MAKE) librbplugins.la
++	 
++$(top_builddir)/shell/librbshell.la:
++	cd $(top_builddir)/shell; $(MAKE) librbshell.la
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/plugins/Makefile.am src/rhythmbox-0.10.1/plugins/Makefile.am
+--- origsrc/rhythmbox-0.10.1/plugins/Makefile.am	2007-02-24 17:27:47.000000000 -0600
++++ src/rhythmbox-0.10.1/plugins/Makefile.am	2007-07-26 15:46:19.744461700 -0500
+@@ -89,6 +89,8 @@
+ 	$(NO_STRICT_ALIASING_CFLAGS)	\
+ 	$(PYGTK_CFLAGS)			\
+ 	$(PYTHON_CFLAGS)
++
++librbplugins_la_LIBADD = $(PYTHON_LIBS)
+ endif
+ 
  
 diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/shell/Makefile.am src/rhythmbox-0.10.1/shell/Makefile.am
 --- origsrc/rhythmbox-0.10.1/shell/Makefile.am	2007-02-24 17:27:29.000000000 -0600
-+++ src/rhythmbox-0.10.1/shell/Makefile.am	2007-06-05 16:40:55.607619600 -0500
-@@ -95,10 +95,8 @@
- rhythmbox_LDADD =					\
- 	librbshell.la					\
- 	$(top_builddir)/corelib/librhythmbox-core.la	\
++++ src/rhythmbox-0.10.1/shell/Makefile.am	2007-07-26 15:52:22.964804400 -0500
+@@ -92,13 +92,9 @@
+ 	rb-tray-icon.c					\
+ 	rb-tray-icon.h
+ 
+-rhythmbox_LDADD =					\
+-	librbshell.la					\
+-	$(top_builddir)/corelib/librhythmbox-core.la	\
 -	$(top_builddir)/sources/libsourcesimpl.la	\
- 	$(top_builddir)/podcast/librbpodcast.la	        \
+-	$(top_builddir)/podcast/librbpodcast.la	        \
 -	$(top_builddir)/plugins/librbplugins.la		\
 -	$(top_builddir)/rhythmdb/librhythmdb.la
-+	$(top_builddir)/plugins/librbplugins.la
++rb-shell.lo: $(tab_files)
++
++rhythmbox_LDADD = $(top_builddir)/corelib/librhythmbox-core.la
  
  if USE_LIBSOUP
  rhythmbox_LDADD += $(SOUP_LIBS)
+@@ -110,10 +106,6 @@
+ INCLUDES += $(NOTIFY_CFLAGS)
+ endif
+ 
+-if ENABLE_PYTHON
+-rhythmbox_LDADD += $(PYTHON_LIBS) $(top_builddir)/bindings/python/rb.la
+-endif
+-
+ if ENABLE_TRACK_TRANSFER
+ rhythmbox_LDADD += $(GNOME_MEDIA_PROFILES_LIBS)
+ INCLUDES += $(GNOME_MEDIA_PROFILES_CFLAGS)
+@@ -148,7 +140,7 @@
+ 	$(LIBNAUTILUS_BURN_LIBS)			\
+ 	$(RHYTHMBOX_LIBS)
+ 
+-rhythmbox_LDFLAGS = -export-dynamic -no-undefined
++rhythmbox_LDFLAGS = -export-dynamic
+ 
+ 
+ BUILT_SOURCES += $(tab_files)
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x '*.stamp' -x '*.html' -x '*.bak' -x '*.sgml' -x '*.tmpl' -x '*.txt' -x '*.xml' -x '*.args' -x '*.devhelp*' -x '*.css' -x '*.hierarchy' -x '*.interfaces' -x '*.prerequisites' -x '*.signals' -x '*.png' -x '*.top' -x '*.bottom' -x gtk-doc.make -x gtk-doc.m4 -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/rhythmbox-0.10.1/sources/Makefile.am src/rhythmbox-0.10.1/sources/Makefile.am
+--- origsrc/rhythmbox-0.10.1/sources/Makefile.am	2007-02-24 17:27:24.000000000 -0600
++++ src/rhythmbox-0.10.1/sources/Makefile.am	2007-07-26 14:24:37.144119100 -0500
+@@ -60,6 +60,7 @@
+ 
+ libsources_la_LDFLAGS = -export-dynamic
+ libsourcesimpl_la_LDFLAGS = -export-dynamic
++libsourcesimpl_la_LIBADD = $(TOTEM_PLPARSER_LIBS)
+ 
+ if USE_LIBSOUP
+ INCLUDES += $(SOUP_CFLAGS)
