@@ -1,0 +1,43 @@
+--- origsrc/rhythmbox-0.12.5/podcast/Makefile.am	2009-09-16 16:04:49.000000000 -0500
++++ src/rhythmbox-0.12.5/podcast/Makefile.am	2009-11-09 21:29:58.956878000 -0600
+@@ -52,6 +52,7 @@ librhythmbox_itms_detection_plugin_la_CX
+ librhythmbox_itms_detection_plugin_la_LDFLAGS = \
+ 	-avoid-version	\
+ 	-export-symbols $(srcdir)/plugin.symbols \
++	-no-undefined	\
+ 	-module
+ 
+ endif
+--- origsrc/rhythmbox-0.12.5/podcast/rhythmbox-itms-plugin.cpp	2009-09-16 16:04:49.000000000 -0500
++++ src/rhythmbox-0.12.5/podcast/rhythmbox-itms-plugin.cpp	2009-11-09 21:35:56.493901400 -0600
+@@ -121,6 +121,7 @@ plugin_get_value (NPP instance,
+ 	return err;
+ }
+ 
++extern "C"
+ NPError
+ NP_GetValue (void *future,
+ 	     NPPVariable variable,
+@@ -129,12 +130,14 @@ NP_GetValue (void *future,
+ 	return plugin_get_value (NULL, variable, value);
+ }
+ 
++extern "C"
+ char *
+ NP_GetMIMEDescription (void)
+ {
+ 	return "application/itunes-plugin::;";
+ }
+ 
++extern "C"
+ NPError
+ NP_Initialize (NPNetscapeFuncs *moz_funcs,
+                NPPluginFuncs *plugin_funcs)
+@@ -207,6 +210,7 @@ NP_Initialize (NPNetscapeFuncs *moz_func
+ 	return NPERR_NO_ERROR;
+ }
+ 
++extern "C"
+ NPError
+ NP_Shutdown (void)
+ {

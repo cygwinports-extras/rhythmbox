@@ -1,0 +1,11 @@
+--- origsrc/rhythmbox-0.12.5/configure.ac	2009-09-18 05:24:05.000000000 -0500
++++ src/rhythmbox-0.12.5/configure.ac	2009-11-09 14:51:32.796868700 -0600
+@@ -630,7 +630,7 @@ dnl ====================================
+ dnl Plugins
+ dnl ================================================================
+ 
+-PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
++PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined"
+ AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
+ 
+ PLUGINDIR='${libdir}/rhythmbox/plugins'
