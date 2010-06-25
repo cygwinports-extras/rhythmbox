@@ -1,5 +1,5 @@
 category: Audio Gnome
-requires: libatk1.0_0 libdbus-glib_1_2 libdbus1_3 libgcc1 libgconf2_4 libgdk_pixbuf2.0_0 libglib2.0_0 libgnome-media-profiles0 libgstinterfaces0.10_0  libgstreamer0.10_0 libgtk2.0_0 libICE6 libintl8 libmusicbrainz3_6 libmusicbrainz4 libnotify1 libpango1.0_0 libSM6 libsoup-gnome2.4_1 libsoup2.4_1 libtotem-plparser12 libX11_6 libxml2 python python-gobject2.0 python-gtk2.0
+requires: libatk1.0_0 libdbus-glib_1_2 libdbus1_3 libgcc1 libgconf2_4 libgdk_pixbuf2.0_0 libglib2.0_0 libgnome-media-profiles0 libgstinterfaces0.10_0  libgstreamer0.10_0 libgtk2.0_0 libICE6 libintl8 libmusicbrainz3_6 libmusicbrainz4 libnotify1 libpango1.0_0 libSM6 libsoup-gnome2.4_1 libsoup2.4_1 libtotem-plparser17 libX11_6 libxml2 python python-gobject2.0 python-gtk2.0
 sdesc: "GNOME integrated music management application"
 ldesc: "Rhythmbox is an integrated music management application, 
 originally inspired by Apple's iTunes, supporting a music library, 
