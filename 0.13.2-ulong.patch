@@ -1,0 +1,11 @@
+--- origsrc/rhythmbox-0.13.2/plugins/mpris/rb-mpris-plugin.c	2010-10-19 17:49:47.000000000 -0500
++++ src/rhythmbox-0.13.2/plugins/mpris/rb-mpris-plugin.c	2010-12-18 23:17:03.291095100 -0600
+@@ -359,7 +359,7 @@ add_ulong_property (GVariantBuilder *bui
+ 		    int scale,
+ 		    gboolean zero_is_valid)
+ {
+-	ulong v;
++	unsigned long v;
+ 	v = rhythmdb_entry_get_ulong (entry, prop);
+ 	if (zero_is_valid || v != 0) {
+ 		rb_debug ("adding %s = %lu", name, v);
