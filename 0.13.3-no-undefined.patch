@@ -1,0 +1,31 @@
+--- origsrc/rhythmbox-0.12.5/configure.ac	2009-09-18 05:24:05.000000000 -0500
++++ src/rhythmbox-0.12.5/configure.ac	2009-11-09 14:51:32.796868700 -0600
+@@ -630,7 +630,7 @@ dnl ====================================
+ dnl Plugins
+ dnl ================================================================
+ 
+-PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
++PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined"
+ AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
+ 
+ PLUGINDIR='${libdir}/rhythmbox/plugins'
+--- origsrc/rhythmbox-0.12.5/podcast/Makefile.am	2009-09-16 16:04:49.000000000 -0500
++++ src/rhythmbox-0.12.5/podcast/Makefile.am	2009-11-09 21:29:58.956878000 -0600
+@@ -52,6 +52,7 @@ librhythmbox_itms_detection_plugin_la_CX
+ librhythmbox_itms_detection_plugin_la_LDFLAGS = \
+ 	-avoid-version	\
+ 	-export-symbols $(srcdir)/plugin.symbols \
++	-no-undefined	\
+ 	-module
+ 
+ endif
+--- origsrc/rhythmbox-0.13.3/plugins/audioscrobbler/Makefile.am	2011-01-16 03:10:39.000000000 -0600
++++ src/rhythmbox-0.13.3/plugins/audioscrobbler/Makefile.am	2011-05-30 16:19:05.076421000 -0500
+@@ -30,6 +30,7 @@ libaudioscrobbler_la_LIBADD = 				\
+ 	$(top_builddir)/shell/librhythmbox-core.la	\
+ 	$(TOTEM_PLPARSER_LIBS)				\
+ 	$(JSON_GLIB_LIBS)				\
++	$(GNOME_KEYRING_LIBS)				\
+ 	$(RHYTHMBOX_LIBS)
+ 
+ INCLUDES = 						\
