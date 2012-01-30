@@ -6,3 +6,5 @@ HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
 PATCH_URI="0.13.3-no-undefined.patch"
 
 CYGCONF_ARGS="--libexecdir=/usr/lib/rhythmbox"
+
+KEEP_LA_FILES="none"
