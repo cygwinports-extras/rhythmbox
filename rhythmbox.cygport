@@ -1,5 +1,5 @@
 NAME="rhythmbox"
-VERSION=2.97
+VERSION=2.98
 RELEASE=1
 CATEGORY="Audio Gnome"
 SUMMARY="GNOME music management application"
@@ -11,10 +11,9 @@ inherit gnome2 python
 
 PATCH_URI="0.13.3-no-undefined.patch"
 
-REQUIRES="girepository-GdkPixbuf2.0 girepository-Gst0.10 girepository-Gtk3.0 girepository-Peas1.0 girepository-WebKit3.0"
+REQUIRES="girepository-Peas1.0 girepository-WebKit3.0"
 
 DISTCLEANFILES="bindings/gi/*.gir"
 
-CYGCONF_ARGS="--libexecdir=/usr/lib/rhythmbox"
+CYGCONF_ARGS="--libexecdir=/usr/lib/rhythmbox --disable-gtk-doc"
 
-KEEP_LA_FILES="none"
