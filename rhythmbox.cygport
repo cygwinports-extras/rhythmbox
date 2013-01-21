@@ -1,13 +1,14 @@
+inherit gnome2 python
+
 NAME="rhythmbox"
 VERSION=2.98
-RELEASE=1
-CATEGORY="Audio Gnome"
+RELEASE=2
+CATEGORY="Audio GNOME"
 SUMMARY="GNOME music management application"
 DESCRIPTION="Rhythmbox is an integrated music management application,
 originally inspired by Apple's iTunes, supporting a music library,
 multiple playlists, internet radio, and more."
 HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
-inherit gnome2 python
 
 PATCH_URI="0.13.3-no-undefined.patch"
 
