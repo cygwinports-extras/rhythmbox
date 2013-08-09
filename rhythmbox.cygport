@@ -1,8 +1,8 @@
 inherit gnome2 python
 
 NAME="rhythmbox"
-VERSION=2.98
-RELEASE=2
+VERSION=2.99.1
+RELEASE=1
 CATEGORY="Audio GNOME"
 SUMMARY="GNOME music management application"
 DESCRIPTION="Rhythmbox is an integrated music management application,
@@ -12,9 +12,12 @@ HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
 
 PATCH_URI="0.13.3-no-undefined.patch"
 
-REQUIRES="girepository-Peas1.0 girepository-WebKit3.0"
+PKG_NAMES="${NAME} ${NAME}-devel"
+rhythmbox_REQUIRES="girepository-Peas1.0 girepository-WebKit3.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good"
+rhythmbox_CONTENTS="etc/ usr/bin/ usr/lib/gir* usr/lib/mozilla/ usr/lib/${NAME}/ usr/libexec/ usr/share/"
+rhythmbox_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/"
 
 DISTCLEANFILES="bindings/gi/*.gir"
 
-CYGCONF_ARGS="--libexecdir=/usr/lib/rhythmbox --disable-gtk-doc"
+CYGCONF_ARGS="--disable-gtk-doc"
 
