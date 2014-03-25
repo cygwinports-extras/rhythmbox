@@ -1,0 +1,12 @@
+--- origsrc/rhythmbox-3.0.2/configure.ac	2014-03-25 06:23:56.083137000 -0500
++++ src/rhythmbox-3.0.2/configure.ac	2014-03-25 07:03:28.349822800 -0500
+@@ -413,8 +413,7 @@ if test "x$ac_cv_strftime_supports_E_O"
+         AC_DEFINE(HAVE_STRFTIME_EXTENSION, 1, [Define if strftime supports %E and %O modifiers.])
+ fi
+ 
+-AM_GNU_GETTEXT_VERSION([0.18])
+-AM_GNU_GETTEXT([external])
++AM_GLIB_GNU_GETTEXT
+ 
+ AC_SUBST([GETTEXT_PACKAGE], [rhythmbox])
+ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define to the gettext package name.])
